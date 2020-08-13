@@ -1,0 +1,59 @@
+@import '../config/mixins';
+
+.cantidades {
+  width: 1000px;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  font-family: Montserrat;
+
+  &__box {
+    @include style-as-box;
+    width: 248px;
+    height: 48px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+
+    &__left {
+      width: 48px;
+      height: 48px;
+      margin-right: 20px;
+    }
+
+    &__middle {
+      display: flex;
+      flex-direction: column;
+      margin-right: 44px;
+
+      :first-child {
+        text-align: left;
+        font-weight: Regular;
+        font-size: 12px;
+        letter-spacing: 0.24px;
+        color: #707070;
+      }
+
+      :last-child {
+        text-align: left;
+        font-weight: Regular;
+        font-size: 24px;
+        letter-spacing: 0.48px;
+        text-align: left;
+        color: #000000;
+      }
+    }
+
+    &__right {
+      text-align: left;
+      font-weight: light;
+      font-size: 20px;
+      letter-spacing: 0.4px;
+      color: #02bc77;
+      opacity: 1;
+      flex: 1;
+      text-align: right;
+    }
+  }
+}

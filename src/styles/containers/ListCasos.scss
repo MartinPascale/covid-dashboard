@@ -1,0 +1,115 @@
+@import '../config/mixins';
+
+.list {
+  @include style-as-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 620px;
+  min-height: 448px;
+  padding: 25px 25px 5px;
+  text-align: left;
+  font-weight: lighter;
+  font-size: 15px;
+  font-family: Montserrat;
+  letter-spacing: 0.24px;
+
+  &__empty {
+    width: 100%;
+    height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__titles {
+    display: flex;
+    width: 100%;
+    font-weight: Regular;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    border-bottom: 1px solid #70707038;
+
+    &__title {
+      @include btn-standard;
+      width: 80px;
+      font-size: 15px;
+      color: #707070;
+      cursor: text;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #70707038;
+      opacity: 0.8;
+
+      &:focus {
+        opacity: 1;
+        border-bottom: 1px solid $btnPrimaryColor;
+      }
+    }
+
+    &__search {
+      margin-top: unset;
+      @include btn-standard;
+      height: 35px;
+      background-color: transparent;
+      border-radius: 4px;
+      background-color: $btnPrimaryColor;
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      line-height: 35px;
+      padding: 0 10px;
+    }
+  }
+
+  &__caso {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__nombre {
+      width: 180px;
+      text-align: left;
+    }
+
+    &__departamento {
+      width: 210px;
+      text-align: left;
+    }
+
+    &__estado {
+      width: 180px;
+      text-align: left;
+    }
+
+    &__link {
+      @include btn-standard;
+      width: 50px;
+      height: 35px;
+      background-color: $btnPrimaryColor;
+      border-radius: 4px;
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      line-height: 35px;
+      padding: 0 10px;
+    }
+  }
+
+  &__more-button {
+    @include btn-standard;
+    height: 35px;
+    background-color: transparent;
+    border-radius: 4px;
+    color: $btnPrimaryColor;
+    text-decoration: none;
+    text-align: center;
+    line-height: 35px;
+    padding: 0 10px;
+    margin-top: 5px;
+  }
+}

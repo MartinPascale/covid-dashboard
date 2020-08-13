@@ -1,0 +1,32 @@
+@import '../config/mixins';
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  max-width: calc(100vw - 90px);
+  min-height: calc(100vh - 90px);
+  align-items: center;
+  padding: 45px;
+  font-family: $primaryFont;
+
+  .cantidades {
+    margin-top: 50px;
+  }
+
+  &__middle {
+    display: flex;
+    width: 1000px;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  &__chart {
+    @include style-as-box;
+    display: flex;
+    width: 970px;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 15px;
+  }
+}

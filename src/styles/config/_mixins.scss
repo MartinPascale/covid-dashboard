@@ -1,0 +1,29 @@
+@import './variables';
+@import './typography';
+
+@mixin desktop {
+  @media screen and (min-width: 1100px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: 1100px - 1px) {
+    @content;
+  }
+}
+
+@mixin style-as-box {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 25px 30px #0000001a;
+  border-radius: 10px;
+  opacity: 1;
+}
+
+@mixin btn-standard() {
+  background: unset;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: unset;
+}
