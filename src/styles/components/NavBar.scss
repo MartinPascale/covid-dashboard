@@ -14,10 +14,15 @@
   align-items: center;
   justify-content: space-between;
   font-family: $primaryFont;
+  z-index: 100;
+
+  @include mobile {
+    width: calc(100% - 20px);
+    padding: 0 10px;
+  }
 
   button {
     @include btn-standard;
-    margin-left: 25px;
     color: white;
     font-size: 18px;
   }
@@ -25,6 +30,16 @@
   div {
     display: flex;
     margin-right: 25px;
+
+    @include mobile {
+      &:nth-child(2) {
+        margin-right: 0;
+      }
+
+      &:nth-child(3) {
+        display: none;
+      }
+    }
   }
 
   :any-link {

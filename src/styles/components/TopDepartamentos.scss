@@ -1,0 +1,68 @@
+@import '../config/mixins';
+
+.top-departamentos {
+  @include style-as-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 314px;
+  height: 540px;
+
+  @include mobile {
+    width: 100%;
+  }
+
+  &__titulo {
+    width: calc(100% - 35px);
+    text-align: left;
+    font-weight: Regular;
+    font-size: 22px;
+    font-family: Montserrat;
+    letter-spacing: 0.44px;
+    color: #707070;
+    margin: 15px 0 0;
+    padding: 0 0 10px 35px;
+    border-bottom: 1px solid #70707038;
+  }
+
+  &__lista {
+    width: 100%;
+    overflow-y: scroll;
+
+    &__departamento {
+      display: flex;
+      align-items: center;
+      width: calc(100% - 35px);
+      height: 60px;
+      padding-left: 35px;
+
+      .fixed {
+        font-weight: bold;
+      }
+
+      &:nth-child(odd) {
+        background: #70707021;
+      }
+
+      &__nombre {
+        text-align: left;
+        font-weight: lighter;
+        font-size: 16px;
+        font-family: Montserrat;
+        letter-spacing: 0.44px;
+        color: #707070;
+        width: 130px;
+        margin-right: 20px;
+      }
+
+      &__cantidad {
+        text-align: left;
+        font-weight: lighter;
+        font-size: 16px;
+        font-family: Montserrat;
+        letter-spacing: 0.44px;
+        color: #707070;
+      }
+    }
+  }
+}

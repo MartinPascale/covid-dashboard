@@ -8,6 +8,15 @@
   justify-content: center;
   align-items: center;
 
+  @include mobile {
+    width: 100vw;
+    min-height: calc(100vh - 90px);
+    max-width: unset;
+    min-height: unset;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
   h1 {
     text-align: left;
     font: Bold 30px/40px $primaryFont;
@@ -26,11 +35,28 @@
     height: 600px;
     @include style-as-box;
 
+    @include mobile {
+      width: calc(100% - 40px);
+      height: calc(100% - 90px);
+      overflow-y: scroll;
+      padding-top: 10px;
+      margin-top: 50px;
+    }
+
     &__inputs {
       width: 822px;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
+
+      @include mobile {
+        flex-direction: column;
+        width: 100%;
+        flex-wrap: nowrap;
+        overflow: scroll;
+        overflow-x: hidden;
+        padding-top: 10px;
+      }
 
       &__wrapper {
         @include btn-standard;
@@ -40,7 +66,6 @@
         align-items: flex-start;
         width: 287px;
         height: 59px;
-        background: #e1e5ff 0% 0% no-repeat padding-box;
         border-radius: 10px;
         margin-bottom: 22px;
         padding: 0 50px;
@@ -50,16 +75,27 @@
           margin-bottom: unset;
         }
 
+        @include mobile {
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          padding: 0;
+        }
+
         label {
-          font: Medium 12px/16px Neusa Next Std;
+          font: lighter 16px $primaryFont;
           letter-spacing: 0.84px;
           color: #515c6f;
           opacity: 0.7;
           text-transform: uppercase;
-        }
+          margin-right: 10px;
 
-        select {
-          cursor: pointer;
+          @include mobile {
+            width: 100%;
+            text-align: left;
+            padding-left: 46px;
+            margin-right: unset;
+          }
         }
 
         &__input {
@@ -71,6 +107,11 @@
           font-weight: Medium;
           letter-spacing: 0px;
           color: #515c6f;
+          border-bottom: 1px solid #515c6f4b;
+
+          &:focus {
+            border-bottom: 1px solid $btnPrimaryColor;
+          }
         }
       }
 
@@ -82,6 +123,13 @@
         cursor: pointer;
         font-size: 16px;
         text-align: center;
+
+        @include mobile {
+          width: 100%;
+          text-align: left;
+          margin-left: -24px;
+          margin-right: unset;
+        }
 
         option {
           padding-left: 15px;
@@ -108,6 +156,13 @@
       height: 46px;
       background: #4791ff 0% 0% no-repeat padding-box;
       box-shadow: 0px 5px 10px #4791ff65;
+
+      @include mobile {
+        display: flex;
+        flex-shrink: 0;
+        width: 100%;
+        border-radius: 0;
+      }
     }
   }
 }

@@ -1,115 +1,167 @@
 @import '../config/mixins';
 
-.list {
+.wrapper {
   @include style-as-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 620px;
-  min-height: 448px;
-  padding: 25px 25px 5px;
-  text-align: left;
-  font-weight: lighter;
-  font-size: 15px;
-  font-family: Montserrat;
-  letter-spacing: 0.24px;
-
-  &__empty {
-    width: 100%;
-    height: 380px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  @include mobile {
+    width: calc(100vw - 40px);
+    overflow-x: scroll;
   }
 
-  &__titles {
+  .list {
     display: flex;
-    width: 100%;
-    font-weight: Regular;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    width: 950px;
+    min-height: 448px;
+    padding: 25px 25px 5px;
     text-align: left;
-    border-bottom: 1px solid #70707038;
+    font-weight: lighter;
+    font-size: 15px;
+    font-family: Montserrat;
+    letter-spacing: 0.24px;
 
-    &__title {
-      @include btn-standard;
-      width: 80px;
-      font-size: 15px;
-      color: #707070;
-      cursor: text;
-      padding-bottom: 5px;
+    @include mobile {
+      width: 100%;
+      padding: 10px 0 10px 0;
+    }
+
+    &__empty {
+      width: 100%;
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__titles {
+      display: flex;
+      width: 970px;
+      font-weight: Regular;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
       border-bottom: 1px solid #70707038;
-      opacity: 0.8;
 
-      &:focus {
-        opacity: 1;
-        border-bottom: 1px solid $btnPrimaryColor;
+      @include mobile {
+        padding-left: 330px;
+      }
+
+      &__title {
+        @include btn-standard;
+        width: 80px;
+        font-size: 15px;
+        color: #707070;
+        cursor: text;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #70707038;
+        opacity: 0.8;
+        width: 140px;
+
+        &:focus {
+          opacity: 1;
+          border-bottom: 1px solid $btnPrimaryColor;
+        }
+      }
+
+      &__search {
+        margin-top: unset;
+        @include btn-standard;
+        height: 35px;
+        background-color: transparent;
+        border-radius: 4px;
+        background-color: $btnPrimaryColor;
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        line-height: 35px;
+        padding: 0 10px;
+        margin-left: 10px;
+        margin-right: 15px;
+
+        &--remove {
+          margin-top: unset;
+          @include btn-standard;
+          height: 35px;
+          width: 35px;
+          background-color: transparent;
+          border-radius: 4px;
+          background-color: red;
+          color: white;
+          text-decoration: none;
+          text-align: center;
+          line-height: 35px;
+          padding: 0 10px;
+          margin-left: 40px;
+          margin-right: 5px;
+        }
       }
     }
 
-    &__search {
-      margin-top: unset;
+    &__caso {
+      width: 100%;
+      height: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      @include mobile {
+        padding-left: 340px;
+      }
+
+      &:nth-child(odd) {
+        background: #70707021;
+      }
+
+      @include mobile {
+        width: unset;
+      }
+
+      &__nombre {
+        width: 180px;
+        text-align: left;
+      }
+
+      &__departamento {
+        width: 180px;
+        text-align: left;
+      }
+
+      &__estado {
+        width: 180px;
+        text-align: left;
+      }
+
+      &__link {
+        @include btn-standard;
+        width: 50px;
+        height: 35px;
+        background-color: $btnPrimaryColor;
+        border-radius: 4px;
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        line-height: 35px;
+        padding: 0 10px;
+
+        @include mobile {
+          margin-right: 15px;
+        }
+      }
+    }
+
+    &__more-button {
       @include btn-standard;
       height: 35px;
       background-color: transparent;
       border-radius: 4px;
-      background-color: $btnPrimaryColor;
-      color: white;
+      color: $btnPrimaryColor;
       text-decoration: none;
       text-align: center;
       line-height: 35px;
       padding: 0 10px;
+      margin-top: 5px;
     }
-  }
-
-  &__caso {
-    width: 100%;
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    &__nombre {
-      width: 180px;
-      text-align: left;
-    }
-
-    &__departamento {
-      width: 210px;
-      text-align: left;
-    }
-
-    &__estado {
-      width: 180px;
-      text-align: left;
-    }
-
-    &__link {
-      @include btn-standard;
-      width: 50px;
-      height: 35px;
-      background-color: $btnPrimaryColor;
-      border-radius: 4px;
-      color: white;
-      text-decoration: none;
-      text-align: center;
-      line-height: 35px;
-      padding: 0 10px;
-    }
-  }
-
-  &__more-button {
-    @include btn-standard;
-    height: 35px;
-    background-color: transparent;
-    border-radius: 4px;
-    color: $btnPrimaryColor;
-    text-decoration: none;
-    text-align: center;
-    line-height: 35px;
-    padding: 0 10px;
-    margin-top: 5px;
   }
 }

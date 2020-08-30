@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+
+import { signUp } from '../helpers/requestHelpers';
+import { setIsAuthenticated } from '../reducers/actions';
 
 import '../styles/containers/Login.scss';
-import { Link, useHistory } from 'react-router-dom';
-import { signUp } from '../helpers/requestHelpers';
 
 const Signup = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
@@ -13,8 +17,33 @@ const Signup = () => {
   const [entidad, setEntidad] = useState('');
 
   const handleSignUp = () => {
-    signUp(name, email, password, entidad);
+    signUp(name, email, password, entidad, displayToast);
     history.push('/');
+  };
+
+  const displayToast = (isError, message) => {
+    if (isError) {
+      toast.error(`Ha ocurrido un error`, {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      toast.success(`Resgistrado con exito!`, {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      dispatch(setIsAuthenticated(true));
+    }
   };
 
   return (

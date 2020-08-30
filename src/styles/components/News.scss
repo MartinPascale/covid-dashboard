@@ -1,0 +1,82 @@
+@import '../config/mixins';
+
+.news {
+  width: 314px;
+  height: 540px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background: transparent;
+
+  scrollbar-width: none; /* Firefox 64 */
+  -ms-overflow-style: none; /* Internet Explorer 11 */
+  &::-webkit-scrollbar {
+    /** WebKit */
+    display: none;
+  }
+
+  @include mobile {
+    margin-top: 25px;
+    max-height: 220px !important;
+  }
+
+  &__article {
+    @include style-as-box;
+    @include btn-standard;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 8px;
+    background: white;
+    margin-bottom: 15px;
+    color: #515c6f;
+
+    @include mobile {
+      width: calc(100% - 20px);
+      margin-left: -5px;
+    }
+
+    &__top {
+      display: flex;
+      height: 100px;
+      align-items: center;
+
+      &__image {
+        object-fit: contain;
+        padding-top: 7px;
+        img {
+          border-top-left-radius: 8px;
+        }
+      }
+
+      &__title {
+        font-size: 18px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        padding: 0 10px;
+        line-height: 20px;
+        text-align: left;
+      }
+    }
+
+    &__description {
+      height: 35px;
+      font-size: 14px;
+      font-weight: normal;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      padding: 0 10px;
+      line-height: 16px;
+      margin: 10px 0 5px;
+    }
+  }
+}

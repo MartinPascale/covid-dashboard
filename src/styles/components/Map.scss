@@ -1,0 +1,18 @@
+@import '../config/mixins';
+
+.map {
+  @include style-as-box;
+  width: 640px;
+  height: 510px;
+  padding: 15px;
+
+  @include mobile {
+    width: 100%;
+    padding: unset;
+    margin-bottom: 15px;
+  }
+
+  div {
+    border-radius: 10px;
+  }
+}

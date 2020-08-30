@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
-import '../styles/containers/AltaCasos.scss';
 import NavBar from '../components/NavBar';
+import { addCaso, editCaso } from '../helpers/requestHelpers';
+
+import '../styles/containers/AltaCasos.scss';
 
 const AltaCasos = ({
   isModify,
@@ -13,14 +14,30 @@ const AltaCasos = ({
     params: { id },
   },
 }) => {
-  const [nombre, setNombre] = useState('');
-  const [apellido, setApellido] = useState('');
-  const [documento, setDocumento] = useState('');
-  const [edad, setEdad] = useState('');
-  const [estado, setEstado] = useState((state && state.estado) || '');
-  const [domicilio, setDomicilio] = useState('');
-  const [departamento, setDepartamento] = useState('');
-  const [telefono, setTelefono] = useState('');
+  const [nombre, setNombre] = useState(
+    (state && state.caso && state.caso.nombre) || ''
+  );
+  const [apellido, setApellido] = useState(
+    (state && state.caso && state.caso.apellido) || ''
+  );
+  const [documento, setDocumento] = useState(
+    (state && state.caso && state.caso.documento) || ''
+  );
+  const [edad, setEdad] = useState(
+    (state && state.caso && state.caso.edad) || ''
+  );
+  const [estado, setEstado] = useState(
+    (state && state.caso && state.caso.estado) || (state && state.estado) || ''
+  );
+  const [domicilio, setDomicilio] = useState(
+    (state && state.caso && state.caso.domicilio) || ''
+  );
+  const [departamento, setDepartamento] = useState(
+    (state && state.caso && state.caso.departamento) || ''
+  );
+  const [telefono, setTelefono] = useState(
+    (state && state.caso && state.caso.telefonos) || ''
+  );
 
   const history = useHistory();
 
@@ -57,57 +74,14 @@ const AltaCasos = ({
     'Treinta y Tres',
   ];
 
-  console.log(state.estado);
-
   const handleSubmit = () => {
     if (!isModify) {
-      const addCaso = async () => {
-        try {
-          const response = await axios.post(
-            'https://c3112650bf37.ngrok.io/casos',
-            caso,
-            {
-              headers: {
-                'Access-Control-Allow-Origin': '*',
-              },
-              proxy: {
-                host: 'http://127.0.0.1',
-                port: 4000,
-              },
-            }
-          );
-          console.log(response.data);
-          history.push('/');
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      addCaso();
+      addCaso(caso, history);
     } else {
-      const editCaso = async () => {
-        try {
-          const response = await axios.put(
-            `https://c3112650bf37.ngrok.io/casos/${id}`,
-            caso,
-            {
-              headers: {
-                'Access-Control-Allow-Origin': '*',
-              },
-              proxy: {
-                host: 'http://127.0.0.1',
-                port: 4000,
-              },
-            }
-          );
-          console.log(response.data);
-          history.push('/');
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      editCaso();
+      editCaso(documento, caso, history);
     }
   };
+
   return (
     <div className='alta-casos'>
       <NavBar />
@@ -142,6 +116,7 @@ const AltaCasos = ({
           <div className='alta-casos__form__inputs__wrapper'>
             <label>Edad</label>
             <input
+              type='number'
               className='alta-casos__form__inputs__wrapper__input'
               value={edad}
               onChange={(e) => setEdad(e.target.value)}
@@ -193,6 +168,18 @@ const AltaCasos = ({
           className='alta-casos__form__button'
           type='button'
           onClick={handleSubmit}
+          disabled={
+            !(
+              telefono &&
+              departamento &&
+              domicilio &&
+              estado &&
+              edad &&
+              documento &&
+              apellido &&
+              nombre
+            )
+          }
         >
           {isModify ? 'Editar' : 'Agregar'}
         </button>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import ListCasos from './components/ListCasos';
@@ -8,8 +8,14 @@ import './App.css';
 import Dashboard from './containers/Dashboard';
 import Login from './containers/Login';
 import Signup from './containers/Signup';
+import Config from './containers/Config';
+import { getURL } from './helpers/requestHelpers';
 
 function App() {
+  useEffect(() => {
+    getURL();
+  }, []);
+
   return (
     <Router>
       <Switch>
@@ -30,6 +36,9 @@ function App() {
         </Route>
         <Route exact path='/signup'>
           <Signup />
+        </Route>
+        <Route exact path='/config'>
+          <Config />
         </Route>
       </Switch>
     </Router>

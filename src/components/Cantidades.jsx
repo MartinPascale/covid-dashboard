@@ -1,64 +1,65 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 
 import confirmados from '../assets/confirmados.svg';
 import fallecidos from '../assets/fallecidos.svg';
 import recuperados from '../assets/recuperados.svg';
 
-import { getCasos } from '../helpers/requestHelpers';
+import { getCasos, getCasosHoy } from '../helpers/requestHelpers';
 
 import '../styles/components/Cantidades.scss';
 
 const Cantidades = (props) => {
-  const [list, setList] = useState([]);
+  const dispatch = useDispatch();
+  const casos = useSelector((state) => state.toJS().casos);
+  const [casosHoy, setCasosHoy] = useState(0);
 
   useEffect(() => {
-    getCasos(setList);
+    if (!casos || casos.length === 0) {
+      getCasos(() => null, dispatch);
+    }
+    getCasosHoy(setCasosHoy);
   }, []);
 
   const casosConfirmados =
-    list && list.filter((caso) => caso.estado === 'CONFIRMADO');
+    casos && casos.filter((caso) => caso.estado === 'CONFIRMADO');
   const casosFallecidos =
-    list && list.filter((caso) => caso.estado === 'FALLECIDO');
+    casos && casos.filter((caso) => caso.estado === 'FALLECIDO');
   const casosRecuperados =
-    list && list.filter((caso) => caso.estado === 'RECUPERADO');
+    casos && casos.filter((caso) => caso.estado === 'RECUPERADO');
 
   return (
     <div className='cantidades'>
       <div className='cantidades__box'>
         <div className='cantidades__box__left'>
-          <img src={confirmados} />
+          <img src={confirmados} alt='casos confirmados' />
         </div>
         <div className='cantidades__box__middle'>
-          <div>Totales</div>
+          <div>Confirmados</div>
           <div>{casosConfirmados && casosConfirmados.length}</div>
         </div>
-        <div className='cantidades__box__right'>+4</div>
+        <div className='cantidades__box__right'>+{casosHoy.length || 0}</div>
       </div>
       <div className='cantidades__box'>
         <div className='cantidades__box__left'>
-          <img src={recuperados} />
+          <img src={recuperados} alt='casos recuperados' />
         </div>
         <div className='cantidades__box__middle'>
           <div>Recuperados</div>
           <div>{casosRecuperados && casosRecuperados.length}</div>
         </div>
-        <div className='cantidades__box__right'>+4</div>
       </div>
       <div className='cantidades__box'>
         <div className='cantidades__box__left'>
-          <img src={fallecidos} />
+          <img src={fallecidos} alt='casos fallecidos' />
         </div>
         <div className='cantidades__box__middle'>
           <div>Fallecidos</div>
           <div>{casosFallecidos && casosFallecidos.length}</div>
         </div>
-        <div className='cantidades__box__right'>+4</div>
       </div>
     </div>
   );
 };
-
-Cantidades.propTypes = {};
 
 export default Cantidades;
